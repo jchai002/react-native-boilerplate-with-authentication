@@ -38,7 +38,7 @@ module.exports = React.createClass({
           />
 
         <Text style={styles.label}>{this.state.errorMessage}</Text>
-        <Button text={'Sign In'} onPress={this.onPress} />
+        <Button text={'Sign In'} onPress={this.onSignInPress} />
         <Button text={'I need an account...'} onPress={this.onSignupPress} />
       </View>
     );
@@ -46,7 +46,7 @@ module.exports = React.createClass({
   onSignupPress: function() {
     this.props.navigator.push({name: 'signup'});
   },
-  onPress: function() {
+  onSignInPress: function() {
     Parse.User.logIn(this.state.username, this.state.password, {
       success: (user) => { this.props.navigator.immediatelyResetRouteStack([{name: 'protected'}]); },
       error: (data, error) => { this.setState({ errorMessage: error.message }); }
